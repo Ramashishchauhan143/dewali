@@ -3,67 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Diwali Wishes</title>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@500&display=swap" rel="stylesheet">
+<title>Diwali Wishes 🎇</title>
 <style>
-html, body {
+body, html {
   margin: 0;
   padding: 0;
   overflow: hidden;
   height: 100%;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #ff6f61, #ffb347, #ff6f61, #ffb347);
+}
+
+/* Gradient animated background */
+#background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
   background-size: 400% 400%;
-  animation: gradientBG 20s ease infinite;
+  animation: gradientBG 12s ease infinite;
+  z-index: -2;
 }
 
 @keyframes gradientBG {
-  0% {background-position:0% 50%;}
-  50% {background-position:100% 50%;}
-  100% {background-position:0% 50%;}
+  0% { background-position:0% 50%; }
+  50% { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
 }
 
+/* Fireworks canvas */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/* Heading text */
 h1 {
   font-family: 'Pacifico', cursive;
   font-size: 3em;
   text-align: center;
-  margin-top: 40px;
-  animation: colorText 5s linear infinite;
-  text-shadow: 2px 2px 15px #000;
-  position: relative;
-  z-index: 2;
+  color: #fff;
+  text-shadow: 0 0 15px #ff0, 0 0 30px #ff0080, 0 0 45px #ff0;
+  margin-top: 50px;
+  animation: glow 2s ease-in-out infinite alternate;
 }
 
-@keyframes colorText {
-  0% {color:#ff4f5a;}
-  25% {color:#ffb347;}
-  50% {color:#ffdf00;}
-  75% {color:#6fffe9;}
-  100% {color:#ff4f5a;}
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ff0080, 0 0 20px #ff0080; }
+  to { text-shadow: 0 0 20px #ffff00, 0 0 40px #ff0080; }
 }
 
 #wish {
-  font-size: 2em;
-  color: #fff;
   text-align: center;
-  margin-bottom: 30px;
-  text-shadow: 2px 2px 10px #000;
-  position: relative;
-  z-index: 2;
+  color: white;
+  font-size: 1.8em;
+  margin-top: 10px;
+  text-shadow: 0 0 10px #000;
 }
 
 #inputContainer {
   text-align: center;
-  z-index: 2;
-  position: relative;
+  margin-top: 40px;
 }
 
 input, button {
   padding: 12px 20px;
-  margin: 10px 5px;
+  margin: 10px;
   font-size: 1em;
-  border: none;
   border-radius: 25px;
+  border: none;
   outline: none;
 }
 
@@ -73,7 +82,7 @@ input {
 }
 
 button {
-  background: linear-gradient(45deg, #fddb92, #ff6f61);
+  background: linear-gradient(45deg, #ff6f61, #fddb92);
   color: white;
   cursor: pointer;
   font-weight: bold;
@@ -84,66 +93,69 @@ button:hover {
   transform: scale(1.1);
 }
 
-canvas {
-  position: absolute;
-  top:0;
-  left:0;
-  z-index:1;
+#shareBtn {
+  background-color: #25D366;
+  color: white;
+  font-weight: bold;
 }
-.diya {
+
+/* Floating sweets and gifts */
+.floating {
   position: absolute;
-  width: 40px;
-  height: 60px;
-  background: radial-gradient(circle at 50% 20%, #ffdf00 0%, #ff6b00 80%);
-  border-radius: 50% 50% 50% 50%;
-  bottom: 10px;
-  animation: float 4s ease-in-out infinite;
+  width: 70px;
+  height: 70px;
+  animation: float 10s linear infinite, rotate 8s linear infinite;
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  0% { transform: translateY(100vh) rotate(0deg) scale(1); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-10vh) rotate(360deg) scale(1); opacity: 0; }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
 }
 </style>
 </head>
 <body>
 
-<h1>🎆 Diwali Ki Hardik Shubhkamnayein 🎆</h1>
-<p id="wish">From: Ashish chauhan </p>
-
-<div id="inputContainer">
-  <p style="color:white; font-size:1.2em;">share kare:</p>
-  <input type="text" id="myName" placeholder="Apna naam">
-  <button id="shareBtn">🎉 Share kare 🎉</button>
-</div>
-
+<div id="background"></div>
 <canvas id="fireworks"></canvas>
 
+<h1>🎆 Happy Diwali 🎆</h1>
+<p id="wish">From: ashish</p>
+
+<div id="inputContainer">
+  <input type="text" id="myName" placeholder="Apna naam likhiye">
+  <button id="shareBtn">🎉 Share on WhatsApp</button>
+</div>
+
+<!-- Floating sweets and gifts -->
+<img src="https://imgs.search.brave.com/KyxqhPnqIPNBtjbs6RZw-RPfUJ9c-n401ohhSNiWgoY/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTA1/OTE3MzI3Ni9waG90/by9tdW1iYWktaW5k/aWEtbm92ZW1iZXIt/Ny15b3VuZ3N0ZXIt/Y2VsZWJyYXRlcy1k/aXdhbGktd2l0aC1z/cGFya2xpbmctY3Jh/Y2tlcnMtYXQtcHJh/YmhhZGV2aS1vbi5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/ZUJSRGpDcnctUWtU/SzhpblFIOXVzSlg4/Q3R3ZW0wVS1pVHpR/TW1HeVJ3OD0" class="floating" style="left:5%; animation-delay:1s;">
+<img src="https://imgs.search.brave.com/amTlhvn_k4jwKNDN6VjlVsYDgKgvwNPXlXdcDg-vgiU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzYyLzI3/LzdhLzYyMjc3YThl/NTc1Mjc0ZDM3MjNi/ODQzOTQ3YjBiYWU3/LmpwZw" class="floating" style="left:20%; animation-delay:3s;">
+<img src="https://imgs.search.brave.com/hxiB6MX6595xilvzsMD_n1jxHIdkG6WwKXY8E8mjv08/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS12ZWN0b3Iv/ZGl3YWxpLWRpeWEt/b2lsLWxhbXAtaG9s/aWRheS1kZXNpZ24t/dHJhZGl0aW9uYWwt/aW5kaWFuLWZlc3Rp/dmFsLWxpZ2h0cy0z/ZC1yZWFsaXN0aWMt/c3R5bGUtd2l0aC1i/bHVyLWVmZmVjdC1y/YW5nb2xpLXB1cnBs/ZS1iYWNrZ3JvdW5k/LXZlY3Rvci1pbGx1/c3RyYXRpb25fMTcz/MjA3LTIwMjEuanBn/P3NlbXQ9YWlzX2h5/YnJpZCZ3PTc0MCZx/PTgw" class="floating" style="left:40%; animation-delay:2s;">
+<img src="https://mirchi.com/os/cdn/content/images/assorted%2018%20piece%20pure%20ghee%20sweets%20diwali%20gift%20box%20mirchi%20dot%20com_medium_4181506.webp" class="floating" style="left:60%; animation-delay:4s;">
+<img src="https://imgs.search.brave.com/i0Z6oK521E7wMc2aosOgLcjP6JeUXusgMxTDhj3MuGs/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA2LzM1LzgxLzk0/LzM2MF9GXzYzNTgx/OTQ0OV96SlJWdWpw/Q2Zxajd1Zzh1V25S/Vzg4MXZ3ejJIZTZm/NC5qcGc" class="floating" style="left:80%; animation-delay:1.5s;">
+
 <script>
-  // Show sender name from URL
+  // Personalized name logic
   const urlParams = new URLSearchParams(window.location.search);
-  const sender = urlParams.get('name') || "Someone";
-  document.getElementById('wish').innerText = sender + " ki taraf se";
+  const name = urlParams.get('name') || "ashish";
+  document.getElementById('wish').innerText = `${name} ki taraf se Diwali ki hardik shubhkamnayein 🎇`;
+  document.getElementById('myName').value = name;
 
-  // Share logic
-  const shareBtn = document.getElementById('shareBtn');
-  shareBtn.addEventListener('click', async () => {
-    const newName = document.getElementById('myName').value.trim() || "Someone";
-    const newLink = window.location.origin + window.location.pathname + "?name=" + encodeURIComponent(newName);
-
-    if (navigator.share) {
-      await navigator.share({
-        title: "Happy Diwali Wishes 🎆",
-        text: `${newName} ki taraf se Diwali ki hardik shubhkamnayein 🎇✨`,
-        url: newLink
-      });
-    } else {
-      navigator.clipboard.writeText(newLink);
-      alert("Share not supported on this device. Link copied:\n" + newLink);
-    }
+  // WhatsApp share button
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    const myName = document.getElementById('myName').value.trim() || "Someone";
+    const newLink = window.location.origin + window.location.pathname + "?name=" + encodeURIComponent(myName);
+    const text = `${myName} ki taraf se Diwali ki hardik shubhkamnayein! 🪔✨\n${newLink}`;
+    window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
   });
 
-  // Fireworks and Diyas (same as before)
+  // Fireworks animation
   const canvas = document.getElementById('fireworks');
   const ctx = canvas.getContext('2d');
   let W = canvas.width = window.innerWidth;
@@ -154,21 +166,18 @@ canvas {
     H = canvas.height = window.innerHeight;
   });
 
-  const fireworks = [];
-  const particles = [];
+  const fireworks = [], particles = [];
 
   class Firework {
     constructor(x, y, targetX, targetY) {
-      this.x = x;
-      this.y = y;
-      this.targetX = targetX;
-      this.targetY = targetY;
-      this.speed = 4 + Math.random()*3;
+      this.x = x; this.y = y;
+      this.targetX = targetX; this.targetY = targetY;
+      this.speed = 3 + Math.random() * 3;
       this.angle = Math.atan2(targetY - y, targetX - x);
       this.distance = Math.hypot(targetX - x, targetY - y);
       this.traveled = 0;
       this.exploded = false;
-      this.color = `hsl(${Math.random()*360}, 100%, 50%)`;
+      this.color = `hsl(${Math.random() * 360}, 100%, 60%)`;
     }
     update() {
       const vx = Math.cos(this.angle) * this.speed;
@@ -176,18 +185,16 @@ canvas {
       this.x += vx;
       this.y += vy;
       this.traveled += Math.sqrt(vx*vx + vy*vy);
-      if(this.traveled >= this.distance) this.explode();
+      if (this.traveled >= this.distance) this.explode();
     }
     explode() {
       if(this.exploded) return;
       this.exploded = true;
-      for(let i=0;i<100;i++){
-        particles.push(new Particle(this.x, this.y, this.color));
-      }
+      for(let i=0;i<80;i++) particles.push(new Particle(this.x, this.y, this.color));
     }
     draw() {
       ctx.beginPath();
-      ctx.arc(this.x,this.y,3,0,Math.PI*2);
+      ctx.arc(this.x, this.y, 3, 0, Math.PI*2);
       ctx.fillStyle = this.color;
       ctx.fill();
     }
@@ -195,24 +202,22 @@ canvas {
 
   class Particle {
     constructor(x,y,color){
-      this.x = x;
-      this.y = y;
-      this.color = color;
-      this.speed = Math.random()*6;
-      this.angle = Math.random()*Math.PI*2;
+      this.x = x; this.y = y; this.color = color;
+      this.speed = Math.random() * 5;
+      this.angle = Math.random() * Math.PI * 2;
       this.alpha = 1;
-      this.decay = 0.015 + Math.random()*0.02;
+      this.decay = 0.01 + Math.random()*0.02;
     }
     update(){
-      this.x += Math.cos(this.angle)*this.speed;
-      this.y += Math.sin(this.angle)*this.speed;
+      this.x += Math.cos(this.angle) * this.speed;
+      this.y += Math.sin(this.angle) * this.speed;
       this.alpha -= this.decay;
     }
     draw(){
       ctx.save();
       ctx.globalAlpha = this.alpha;
       ctx.beginPath();
-      ctx.arc(this.x,this.y,2,0,Math.PI*2);
+      ctx.arc(this.x, this.y, 2, 0, Math.PI*2);
       ctx.fillStyle = this.color;
       ctx.fill();
       ctx.restore();
@@ -226,10 +231,9 @@ canvas {
 
     if(Math.random() < 0.1){
       const startX = Math.random()*W;
-      const startY = H;
       const targetX = Math.random()*W;
       const targetY = Math.random()*H/2;
-      fireworks.push(new Firework(startX,startY,targetX,targetY));
+      fireworks.push(new Firework(startX, H, targetX, targetY));
     }
 
     fireworks.forEach((f,i)=>{
@@ -246,29 +250,7 @@ canvas {
   }
 
   animate();
-
-  // Lightning effect
-  setInterval(()=>{
-    const flash = document.createElement('div');
-    flash.style.position = 'absolute';
-    flash.style.top = 0;
-    flash.style.left = 0;
-    flash.style.width = '100%';
-    flash.style.height = '100%';
-    flash.style.background = 'rgba(255,255,255,0.2)';
-    flash.style.zIndex = 0;
-    document.body.appendChild(flash);
-    setTimeout(()=>flash.remove(), 80);
-  }, 1000);
-
-  // Floating Diyas
-  for(let i=0; i<10; i++){
-    const diya = document.createElement('div');
-    diya.classList.add('diya');
-    diya.style.left = Math.random()*window.innerWidth + 'px';
-    diya.style.animationDelay = (Math.random()*4)+'s';
-    document.body.appendChild(diya);
-  }
 </script>
+
 </body>
 </html>
